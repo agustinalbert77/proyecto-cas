@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Nueva noticia</h2>
+<form method="post" class="admin-form">
+  <label>Título</label>
+  <input name="title" required>
+  <label>Contenido</label>
+  <textarea name="content" rows="6" required></textarea>
+  <label>Fecha</label>
+  <input type="date" name="date">
+  <label>Tipo de actividad</label>
+  <input name="activity_type" placeholder="Creatividad / Actividad / Servicio" required>
+  <label>Autor</label>
+  <input name="author" placeholder="Admin">
+  <button class="btn" type="submit">Guardar</button>
+</form>
+{% endblock %}

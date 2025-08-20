@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Panel de Administración</h2>
+<div class="stats">
+  <div class="stat">Noticias: <strong>{{ news_count }}</strong></div>
+  <div class="stat">Fotos: <strong>{{ photo_count }}</strong></div>
+</div>
+<div class="actions">
+  <a class="btn" href="{{ url_for('admin_add_news') }}">+ Nueva noticia</a>
+  <a class="btn" href="{{ url_for('admin_add_photo') }}">+ Nueva foto</a>
+  <a class="btn btn-secondary" href="{{ url_for('admin_logout') }}">Cerrar sesión</a>
+</div>
+<section>
+  <h3>Noticias recientes</h3>
+  <ul class="list">
+    {% for n in recent_news %}
+    <li>
+      <strong>{{ n.title }}</strong> — {{ n.date.strftime('%d-%m-%Y') }} — {{ n.activity_type }}
+      <span class="right">
+        <a href="{{ url_for('admin_edit_news', news_id=n.id) }}">Editar</a>
+        <form style="display:inline" method="post" action="{{ url_for('admin_delete_news', news_id=n.id) }}" onsubmit="return confirm('¿Eliminar noticia?')">
+          <button class="link danger" type="submit">Eliminar</button>
+        </form>
+      </span>
+    </li>
+    {% else %}<li>Sin registros.</li>{% endfor %}
+  </ul>
+</section>
+<section>
+  <h3>Fotos recientes</h3>
+  <ul class="list">
+    {% for p in recent_photos %}
+    <li>
+      <strong>{{ p.title }}</strong> — {{ p.date.strftime('%d-%m-%Y') }}
+      <span class="right">
+        <a href="{{ url_for('admin_edit_photo', photo_id=p.id) }}">Editar</a>
+        <form style="display:inline" method="post" action="{{ url_for('admin_delete_photo', photo_id=p.id) }}" onsubmit="return confirm('¿Eliminar foto?')">
+          <button class="link danger" type="submit">Eliminar</button>
+        </form>
+      </span>
+    </li>
+    {% else %}<li>Sin registros.</li>{% endfor %}
+  </ul>
+</section>
+{% endblock %}

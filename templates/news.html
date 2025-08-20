@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Noticias</h2>
+<form class="filters" method="get">
+  <input type="text" name="type" value="{{ activity_type }}" placeholder="Tipo de actividad (Creatividad, Actividad, Servicio)">
+  <input type="date" name="date" value="{{ date_str }}">
+  <button class="btn" type="submit">Filtrar</button>
+  <a class="btn btn-secondary" href="{{ url_for('news') }}">Limpiar</a>
+</form>
+<div class="news-list">
+  {% for n in all_news %}
+  <article class="news-item">
+    <h3>{{ n.title }}</h3>
+    <p class="meta">{{ n.date.strftime('%d-%m-%Y') }} · {{ n.activity_type }} · {{ n.author }}</p>
+    <p>{{ n.content }}</p>
+  </article>
+  {% else %}
+  <p>No hay noticias para mostrar.</p>
+  {% endfor %}
+</div>
+{% endblock %}

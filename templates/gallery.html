@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Galería</h2>
+<div class="gallery-grid">
+  {% for p in photos %}
+  <div class="gallery-card" onclick="openModal('{{ url_for('uploaded_file', filename=p.filename) }}', '{{ p.title|e }}', `{{ p.description|e }}`)">
+    <img src="{{ url_for('uploaded_file', filename=p.filename) }}" alt="{{ p.title }}">
+    <div class="gallery-info">
+      <h4>{{ p.title }}</h4>
+      <p class="meta">{{ p.date.strftime('%d-%m-%Y') }} · {{ p.author }}</p>
+    </div>
+  </div>
+  {% else %}
+  <p>No hay fotos aún.</p>
+  {% endfor %}
+</div>
+<div id="photoModal" class="modal" onclick="closeModal(event)">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img id="modalImg" src="" alt="">
+    <h3 id="modalTitle"></h3>
+    <p id="modalDesc"></p>
+  </div>
+</div>
+{% endblock %}

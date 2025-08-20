@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Nueva foto</h2>
+<form method="post" enctype="multipart/form-data" class="admin-form">
+  <label>Imagen</label>
+  <input type="file" name="photo" accept="image/*" required>
+  <label>Título</label>
+  <input name="title" required>
+  <label>Descripción</label>
+  <textarea name="description" rows="4" required></textarea>
+  <label>Fecha</label>
+  <input type="date" name="date">
+  <label>Autor</label>
+  <input name="author" placeholder="Admin">
+  <button class="btn" type="submit">Subir</button>
+</form>
+{% endblock %}

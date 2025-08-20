@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Editar noticia</h2>
+<form method="post" class="admin-form">
+  <label>Título</label>
+  <input name="title" value="{{ n.title }}" required>
+  <label>Contenido</label>
+  <textarea name="content" rows="6" required>{{ n.content }}</textarea>
+  <label>Fecha</label>
+  <input type="date" name="date" value="{{ n.date.strftime('%Y-%m-%d') }}">
+  <label>Tipo de actividad</label>
+  <input name="activity_type" value="{{ n.activity_type }}" required>
+  <label>Autor</label>
+  <input name="author" value="{{ n.author }}">
+  <button class="btn" type="submit">Actualizar</button>
+</form>
+{% endblock %}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ title or "CAS DSLS" }}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+<header class="site-header">
+  <div class="brand">
+    <div class="logo">CAS</div>
+    <div class="titles">
+      <h1>Programa CAS</h1>
+      <p>Colegio Alemán de La Serena</p>
+    </div>
+  </div>
+  <nav class="nav">
+    <a href="{{ url_for('index') }}">Inicio</a>
+    <a href="{{ url_for('news') }}">Noticias</a>
+    <a href="{{ url_for('gallery') }}">Galería</a>
+    <a href="{{ url_for('contact') }}">Contacto</a>
+    <a class="admin-link" href="{{ url_for('admin_login') }}">Admin</a>
+  </nav>
+</header>
+<main class="container">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+  <div class="flash-wrap">
+    {% for cat, msg in messages %}
+    <div class="flash {{ cat }}">{{ msg }}</div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% endwith %}
+  {% block content %}{% endblock %}
+</main>
+<footer class="site-footer">
+  <p>Desarrollado por Agustín Albert (Colegio Alemán de La Serena)</p>
+  <p>
+    <a href="mailto:secretaria@dsls.cl">secretaria@dsls.cl</a> ·
+    <a href="mailto:rgalleguillos@dsls.cl">rgalleguillos@dsls.cl</a> ·
+    <a href="mailto:agustinalbertaguilera@gmail.com">agustinalbertaguilera@gmail.com</a>
+  </p>
+</footer>
+<script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
+</html>

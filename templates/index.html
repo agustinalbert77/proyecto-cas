@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="hero">
+  <h2>Creatividad · Actividad · Servicio</h2>
+  <p>CAS forma parte del núcleo del Programa del Diploma del IB. Promueve el desarrollo personal mediante experiencias reales y reflexivas.</p>
+  <a href="{{ url_for('news') }}" class="btn">Ver noticias</a>
+</section>
+<section class="cards">
+  <article class="card info">
+    <h3>¿Qué es CAS?</h3>
+    <p>CAS implica emprender un viaje de aprendizaje experiencial, con equilibrio entre creatividad, actividad y servicio.</p>
+  </article>
+  <article class="card info">
+    <h3>Objetivos</h3>
+    <p>Desarrollar habilidades, iniciativa y colaboración, y fomentar el compromiso con la comunidad.</p>
+  </article>
+  <article class="card info">
+    <h3>Valores</h3>
+    <p>Respeto, responsabilidad, solidaridad y excelencia, alineados con el espíritu del Colegio Alemán.</p>
+  </article>
+</section>
+<section class="latest">
+  <h3>Últimas noticias</h3>
+  <div class="news-list">
+    {% for n in news_list %}
+    <div class="news-item">
+      <h4>{{ n.title }}</h4>
+      <p class="meta">{{ n.date.strftime('%d-%m-%Y') }} · {{ n.activity_type }} · {{ n.author }}</p>
+      <p>{{ n.content[:180] }}{% if n.content|length > 180 %}...{% endif %}</p>
+    </div>
+    {% else %}
+    <p>No hay noticias aún.</p>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

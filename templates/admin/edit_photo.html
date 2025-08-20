@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Editar foto</h2>
+<form method="post" class="admin-form">
+  <label>Título</label>
+  <input name="title" value="{{ p.title }}" required>
+  <label>Descripción</label>
+  <textarea name="description" rows="4" required>{{ p.description }}</textarea>
+  <label>Fecha</label>
+  <input type="date" name="date" value="{{ p.date.strftime('%Y-%m-%d') }}">
+  <label>Autor</label>
+  <input name="author" value="{{ p.author }}">
+  <button class="btn" type="submit">Actualizar</button>
+</form>
+{% endblock %}
